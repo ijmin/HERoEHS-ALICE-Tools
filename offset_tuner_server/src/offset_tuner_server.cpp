@@ -251,7 +251,7 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 	{
 		//robot_offset_data[msg->joint_name]->joint_init_pos_rad_  = msg->goal_value;
 		//robot_offset_data[msg->joint_name]->joint_offset_rad_    = msg->joint_goal_value*DEGREE2RADIAN + robot_offset_data[msg->joint_name]->joint_init_offset_rad_;
-		robot_offset_data[msg->joint_name]->joint_offset_rad_    = msg->joint_goal_value*DEGREE2RADIAN;
+		//robot_offset_data[msg->joint_name]->joint_offset_rad_    = msg->joint_goal_value*DEGREE2RADIAN;
 	}
 
 	if (dxl_error != 0)
@@ -383,8 +383,10 @@ bool OffsetTunerServer::PresentJointStateArrayCallBack(offset_tuner_msgs::Presen
 
 			joint_offset_pos.joint_name    = joint_name;
 			joint_offset_pos.torque_state  = torque_enable;
-			joint_offset_pos.offset_data   = joint_data->joint_offset_rad_*RADIAN2DEGREE;
 			joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->direction_*controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;
+
+			robot_offset_data[joint_name]->joint_offset_rad_  = joint_offset_pos.present_position_value; //offset saved!
+			joint_offset_pos.offset_data   = joint_data->joint_offset_rad_*RADIAN2DEGREE;
 
 			res.joint_data.push_back(joint_offset_pos);
 		}
