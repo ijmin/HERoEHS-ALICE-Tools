@@ -83,6 +83,7 @@ private:
 
 	std::map<std::string, bool>             robot_torque_enable_data;
 	std::map<std::string, JointOffsetData*> robot_offset_data;
+	offset_tuner_msgs::PresentJointStateData joint_offset_pos;
 
 	void setCtrlModule(std::string module);
 	void moveToInitialPose(std::string command);
