@@ -401,7 +401,7 @@ bool OffsetTunerServer::PresentJointStateArrayCallBack(offset_tuner_msgs::Presen
 			joint_offset_pos.joint_name    = joint_name;
 			joint_offset_pos.torque_state  = torque_enable;
 			joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->direction_*controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;
-			joint_offset_pos.offset_data   = joint_data->joint_offset_rad_*RADIAN2DEGREE;
+			joint_offset_pos.offset_data   = joint_data->joint_offset_rad_;
 
 			res.joint_data.push_back(joint_offset_pos);
 		}
