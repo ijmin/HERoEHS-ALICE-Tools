@@ -234,7 +234,8 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 		return;
 	}
 
-	double  goal_pose_rad   = controller->robot_->dxls_[msg->joint_name]->direction_*msg->joint_goal_value*DEGREE2RADIAN;
+	//double  goal_pose_rad   = controller->robot_->dxls_[msg->joint_name]->direction_*msg->joint_goal_value*DEGREE2RADIAN;
+	double  goal_pose_rad   = msg->joint_goal_value*DEGREE2RADIAN;
 	int32_t goal_pose_value = controller->robot_->dxls_[msg->joint_name]->convertRadian2Value(goal_pose_rad);
 	uint8_t dxl_error       = 0;
 	int32_t comm_result     = COMM_SUCCESS;
@@ -271,7 +272,8 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 			ROS_ERROR_STREAM(msg->joint_name << "  has error " << (int) dxl_error);
 		}
 
-		robot_offset_data[msg->joint_name]->joint_offset_rad_  = controller->robot_->dxls_[msg->joint_name]->direction_*controller->robot_->dxls_[msg->joint_name]->convertValue2Radian(present_pos_value);
+		//robot_offset_data[msg->joint_name]->joint_offset_rad_  = controller->robot_->dxls_[msg->joint_name]->direction_*controller->robot_->dxls_[msg->joint_name]->convertValue2Radian(present_pos_value);
+		robot_offset_data[msg->joint_name]->joint_offset_rad_  = controller->robot_->dxls_[msg->joint_name]->convertValue2Radian(present_pos_value);
 	}
 
 
@@ -400,7 +402,8 @@ bool OffsetTunerServer::PresentJointStateArrayCallBack(offset_tuner_msgs::Presen
 
 			joint_offset_pos.joint_name    = joint_name;
 			joint_offset_pos.torque_state  = torque_enable;
-			joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->direction_*controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;
+			//joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->direction_*controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;
+			joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;
 			joint_offset_pos.offset_data   = joint_data->joint_offset_rad_;
 
 			res.joint_data.push_back(joint_offset_pos);
