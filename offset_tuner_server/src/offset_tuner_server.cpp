@@ -254,7 +254,7 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 			ROS_ERROR_STREAM("goal_pos_set : " << msg->joint_name << "  has error " << (int) dxl_error);
 		}
 
-	//usleep(10*1000);
+	usleep(10*1000);
 
 	int32_t present_pos_value = 0;
 
