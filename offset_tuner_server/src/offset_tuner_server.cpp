@@ -254,7 +254,7 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 			ROS_ERROR_STREAM("goal_pos_set : " << msg->joint_name << "  has error " << (int) dxl_error);
 		}
 
-	usleep(10*1000);
+	/*usleep(10*1000);
 
 	int32_t present_pos_value = 0;
 
@@ -275,7 +275,7 @@ void OffsetTunerServer::JointOffsetStateMsgsCallBack(const offset_tuner_msgs::Jo
 
 		//robot_offset_data[msg->joint_name]->joint_offset_rad_  = controller->robot_->dxls_[msg->joint_name]->direction_*controller->robot_->dxls_[msg->joint_name]->convertValue2Radian(present_pos_value);
 		robot_offset_data[msg->joint_name]->joint_offset_rad_  = controller->robot_->dxls_[msg->joint_name]->convertValue2Radian(present_pos_value);
-	}
+	}*/
 
 
 
@@ -400,7 +400,7 @@ bool OffsetTunerServer::PresentJointStateArrayCallBack(offset_tuner_msgs::Presen
 			{
 				ROS_ERROR_STREAM(joint_name << "  has error " << (int) dxl_error);
 			}
-
+			robot_offset_data[joint_name]->joint_offset_rad_  = controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value);
 			joint_offset_pos.joint_name    = joint_name;
 			joint_offset_pos.torque_state  = torque_enable;
 			//joint_offset_pos.present_position_value = controller->robot_->dxls_[joint_name]->direction_*controller->robot_->dxls_[joint_name]->convertValue2Radian(present_pos_value)*RADIAN2DEGREE;

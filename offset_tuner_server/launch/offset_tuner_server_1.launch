@@ -4,7 +4,7 @@
     <param name="gazebo"                   value="false"     type="bool"/>
     <param name="gazebo_robot_name"        value="diana_soccer" />
     
-    <param name="offset_file_path"  value="$(find alice_manager)/config/offset.yaml"/>	
+    <param name="offset_file_path"  value="$(find alice_manager)/config/offset1.yaml"/>	
     <param name="robot_file_path"   value="$(find alice_manager)/config/alice.robot"/>
     <param name="init_file_path"    value="$(find alice_manager)/config/dxl_init.yaml"/>   
     	
