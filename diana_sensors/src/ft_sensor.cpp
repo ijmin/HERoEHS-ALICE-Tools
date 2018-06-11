@@ -55,7 +55,7 @@ void InitCallback(const std_msgs::Bool msg)
 
 int main(int argc, char *argv[])
 {
-  char ifname[] = "en01";
+  char ifname[] = "eno1";
 
   ofstream log_file;
   char file_location[80] = "/home";
