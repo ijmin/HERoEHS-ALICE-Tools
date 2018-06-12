@@ -183,7 +183,7 @@ void OffsetTunerServer::moveToInitialPose(std::string command)
 	moving_state_pub.publish(moving_state_msg);
 
 	BaseModule *base_module = BaseModule::getInstance();
-	base_module->go_to_init_pose(command);
+	base_module->go_to_init_pose(command,offset_file);
 	controller->startTimer();
 
 	while (base_module->is_moving_state)
