@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 
 <launch>    
-
-    <!-- Check USER ID -->
+    
+	<!-- Check USER ID -->
     	
     <arg name="host_name"          		 		 value="$(env ALICE_HOST)"/>
 	
@@ -18,7 +18,7 @@
  
     <!-- GAZEBO Robot Setting -->	
     	
-    <param name="gazebo"                 	 value="true"      type="bool"/>
+    <param name="gazebo"                 	 value="false"      type="bool"/>
     
     <arg name="robot_id1_truth"             		 value="$(eval alice_uid==1)"/>
     <arg name="robot_id2_truth"             		 value="$(eval alice_uid==2)"/> 	
@@ -31,7 +31,7 @@
     <param name="offset_file_path"           value="$(find alice_manager)/config/offset_$(arg alice_uid).yaml"/>
     <param name="robot_file_path"            value="$(find alice_manager)/config/alice2_$(arg alice_uid).robot"/>
     <param name="init_file_path"             value="$(find alice_manager)/config/dxl_init_$(arg alice_uid).yaml"/>
-   	
+   		   
     <node name="offset_tuner_server" pkg="offset_tuner_server" type="offset_tuner_server" output="screen">
     </node>
     
