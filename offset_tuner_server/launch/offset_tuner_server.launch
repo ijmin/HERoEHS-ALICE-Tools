@@ -2,7 +2,7 @@
 
 <launch>    
     
-	<!-- Check USER ID 
+	<!-- Check USER ID -->
     	
     <arg name="host_name"          		 		 value="$(env ALICE_HOST)"/>
 	
@@ -10,9 +10,9 @@
     <arg name="id2_truth"             		 value="$(eval host_name=='alice2nuke')"/>
     <arg name="alice_uid" value="1" unless="$(arg id2_truth)" /> 
     <arg name="alice_uid" value="2" unless="$(arg id1_truth)" /> 
-    -->
+
     	
-    <arg name="alice_uid" value="1" /> 
+   <!-- <arg name="alice_uid" value="1" /> -->
     
     <param name="alice_userid"             	 value="$(arg alice_uid)"/>
  
